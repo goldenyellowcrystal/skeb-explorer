@@ -2,7 +2,7 @@ const express = require('express')
 const axios = require('axios')
 var cors = require('cors')
 const app = express()
-const port = 3500
+const port = process.env.PORT || 5000
 
 var allowedOrigins = ['http://localhost:3000', 'https://jsfiddle.com', 'https://skeb-explorer.herokuapp.com']
 var corsOptionsDelegate = {
