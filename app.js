@@ -19,7 +19,7 @@ const userProfile = "https://skeb.jp/api/users/"
 const newWorks = "https://skeb.jp/api/works?sort=date&genre=art&limit=50&age=0&offset="
 
 app.get('/api/users/:id/works/page/:page', cors(corsOptionsDelegate), (req, res) => {
-  const profileWorkLink = userProfile + req.params.id + "/works/?role=creator&sort=date" + (req.params.page * 30)
+  const profileWorkLink = userProfile + req.params.id + "/works/?role=creator&sort=date&offset=" + (req.params.page * 30)
   axios.get(profileWorkLink, {
     headers: {
     Authorization: "Bearer null"
