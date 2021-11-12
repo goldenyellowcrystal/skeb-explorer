@@ -4,7 +4,7 @@ var cors = require('cors')
 const app = express()
 const port = process.env.PORT || 5000
 
-var allowedOrigins = ['http://localhost:5000', 'https://fiddle.jshell.net', 'https://skeb-explorer.herokuapp.com']
+var allowedOrigins = ['https://8080-cs-1060709277325-default.cs-asia-east1-jnrc.cloudshell.dev', 'https://fiddle.jshell.net', 'https://skeb-explorer.herokuapp.com']
 var corsOptionsDelegate = {
   origin: function(origin, callback){
     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
