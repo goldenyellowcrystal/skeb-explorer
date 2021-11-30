@@ -70,8 +70,8 @@
         this.receivedWorks = data.received_works;
       },
       parseCommissionRate(skills) {
-        let artSkill = skills.find(el => el.genre === "art");
-        this.suggestedPrice = artSkill.default_amount;
+        let artSkill = skills.find(el => el.genre == "art");
+        this.summary.suggestedPrice = artSkill.default_amount;
       },
       loadMore() {
         let worksUrl = BACKEND_URL + USERS_LINK + this.summary.screenName + WORKS_SUBPATH + this.loadNewPageCtr;

@@ -3,8 +3,8 @@
     <h2 v-if="isArtist">Commissioners List</h2>
     <h2 v-else>Commissioned Artists List</h2>
     
-    <ul v-for="user in uniqueUsers">
-      <li>
+    <ul>
+      <li v-for="user in uniqueUsers">
         <router-link :to="{
           name: 'UserPage',
           params: {
