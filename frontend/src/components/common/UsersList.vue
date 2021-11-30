@@ -2,24 +2,25 @@
   <div class="users-list">
     <h2 v-if="isArtist">Commissioners List</h2>
     <h2 v-else>Commissioned Artists List</h2>
-    
-    <ul>
-      <li v-for="user in uniqueUsers">
-        <router-link :to="{
-          name: 'UserPage',
-          params: {
-            username: user.screen_name
-          }}">
-            {{ user.name }} ({{ user.art_count }})
-        </router-link>
-      </li>
-    </ul>
+
+    <v-container fluid>
+      <v-row>
+        <v-col class="d-flex flex-column" v-for="user in uniqueUsers" :key="user.id">
+          <UserCard :user="user" />
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
 <script>
+  import UserCard from "./UserCard.vue";
+
   export default {
     name: 'UsersList',
+    components: {
+      UserCard
+    },
     props: {
       uniqueUsers: Object,
       isArtist: Boolean
