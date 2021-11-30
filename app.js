@@ -3,6 +3,7 @@ const axios = require('axios')
 var cors = require('cors')
 const app = express()
 const port = process.env.PORT || 5000
+const path = require('path')
 
 var allowedOrigins = ['https://8080-cs-1060709277325-default.cs-asia-east1-jnrc.cloudshell.dev', 'https://fiddle.jshell.net', 'https://skeb-explorer.herokuapp.com']
 var corsOptionsDelegate = {
@@ -69,9 +70,15 @@ app.get('/api/new/art/:page', cors(corsOptionsDelegate), (req, res) => {
   })
 })
 
-app.get("/", (req, res) => {
-  res.send("Skeb Explorer")
-})
+// Serve static assets if in production
+if (process.env.NODE_ENV != 'production') {
+  // Set static folder
+  app.use(express.static('frontend/dist'));
+
+  app.get('/', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html'))
+  })
+}
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
