@@ -2,9 +2,13 @@
   <div class="art-list">
     <h2 v-if="isArtist">Created Works</h2>
     <h2 v-else>Commissioned Art</h2>
-    <template v-for="image in imageListWithCommissioners">
-      <ArtPiece :art-details="image" />
-    </template>
+    <v-container fluid>
+      <v-row>
+        <v-col class="d-flex flex-column" v-for="image in imageListWithCommissioners" :key="image.id">
+          <ArtPiece :art-details="image" />
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
