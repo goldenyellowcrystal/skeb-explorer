@@ -7,11 +7,11 @@
           <img :src="user.avatar_url" :alt="user.screen_name + ' icon'" />
         </v-avatar>
       </v-col>
-      <v-col class="pa-0 commissioner-name" :cols="9">
-        <div class="font-weight-bold commissioner-name">
+      <v-col class="pa-0 d-block" :cols="9">
+        <div class="font-weight-bold text-no-wrap text-truncate">
           {{ user.name }}
         </div>
-        <div class="text-caption commissioner-name">
+        <div class="text-caption text-no-wrap text-truncate">
           {{ !!user.creator ? 'Artist' : 'Commissioner' }}
         </div>
       </v-col>
