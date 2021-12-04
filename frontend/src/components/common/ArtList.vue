@@ -7,6 +7,9 @@
         <v-col class="d-flex flex-column" v-for="image in imageListWithCommissioners" :key="image.id">
           <ArtPiece :art-details="image" />
         </v-col>
+        <v-col class="d-flex flex-column">
+          <LoadMore @load-more="loadMore()" :show="showLoadMore"/>
+        </v-col>
       </v-row>
     </v-container>
   </div>
@@ -16,16 +19,19 @@
   var _ = require('lodash');
 
   import ArtPiece from "./ArtPiece.vue";
+  import LoadMore from "./LoadMore.vue";
 
   export default {
     name: 'ArtList',
     components: {
-      ArtPiece
+      ArtPiece,
+      LoadMore
     },
     props: {
       imageList: Array,
       commissioners: Array,
-      isArtist: Boolean
+      isArtist: Boolean,
+      showLoadMore: Boolean
     },
     methods: {
       findImage(path) {
@@ -34,6 +40,9 @@
             return image.path == path;
           }
         )
+      },
+      loadMore() {
+        this.$emit("load-more");
       }
     },
     computed: {

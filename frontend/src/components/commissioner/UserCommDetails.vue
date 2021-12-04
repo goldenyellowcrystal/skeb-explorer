@@ -1,13 +1,17 @@
 <template>
   <div class="user-comm-details">
-    Work Processed: {{ processedWorks }} / {{ totalReqs }} 
-    <template v-if="processedWorks < totalReqs">
-      (<button @click="loadMore()">Load More</button>)
-    </template>
+    <UsersList
+      @load-more="loadMore()"
+      :show-load-more="showLoadMore"
+      :unique-users="uniqueArtists"
+      :is-artist="false" />
     <hr />
-    <UsersList :unique-users="uniqueArtists" :is-artist="false" />
-    <hr />
-    <ArtList :image-list="imageList" :commissioners="artists" :is-artist="false" />
+    <ArtList
+      @load-more="loadMore()"
+      :show-load-more="showLoadMore"
+      :image-list="imageList"
+      :commissioners="artists"
+      :is-artist="false" />
   </div>
 </template>
 
@@ -84,6 +88,9 @@
           }
         });
         return parsedArtists;
+      },
+      showLoadMore() {
+        return this.processedWorks > 0 && this.processedWorks < this.totalReqs
       }
     },
     watch: {

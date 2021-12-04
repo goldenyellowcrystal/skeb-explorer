@@ -17,7 +17,7 @@
     <!-- General Info -->
     <v-card-text>
       <v-row class="justify-center text-center">
-        <div class="font-weight-bold ms-1">
+        <div class="font-weight-bold">
           {{ user.name }}
         </div>
       </v-row>

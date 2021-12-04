@@ -31,18 +31,11 @@
     },
     methods: {
       gotoWorkPage: function() {
-        console.log(this.artDetails.path)
         window.open('https://skeb.jp' + this.artDetails.path, '_blank');
       }
     }
   }
 </script>
-
-<style>
-  .pointer {
-    cursor: pointer;
-  }
-</style>
 
 <!--
   ART DETAILS PROPERTIES:

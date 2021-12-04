@@ -53,4 +53,8 @@
     height: 64px;
     width: 64px;
   }
+  
+  .pointer {
+    cursor: pointer;
+  }
 </style>
