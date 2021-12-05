@@ -1,7 +1,7 @@
 const express = require('express')
 const axios = require('axios')
 var cors = require('cors')
-var sslRedirect = require('heroku-ssl-redirect')
+import sslRedirect from 'heroku-ssl-redirect';
 
 const app = express()
 const port = process.env.PORT || 5000
@@ -16,6 +16,22 @@ var corsOptionsDelegate = {
       callback(new Error('Not allowed by CORS'))
     }
   }
+}
+
+// Serve static assets if in production
+if (process.env.NODE_ENV == 'production') {
+  app.use(sslRedirect());
+
+  // Set static folder
+  app.use(express.static('frontend/dist'));
+
+  app.get('/', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html'))
+  })
+} else {
+  app.get('/', (req, res) => {
+    res.send('Skeb Explorer')
+  })
 }
 
 const userProfile = "https://skeb.jp/api/users/"
@@ -71,22 +87,6 @@ app.get('/api/new/art/:page', cors(corsOptionsDelegate), (req, res) => {
     res.send(resp.data)
   })
 })
-
-// Serve static assets if in production
-if (process.env.NODE_ENV == 'production') {
-  app.use(sslRedirect());
-
-  // Set static folder
-  app.use(express.static('frontend/dist'));
-
-  app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html'))
-  })
-} else {
-  app.get('/', (req, res) => {
-    res.send('Skeb Explorer')
-  })
-}
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
