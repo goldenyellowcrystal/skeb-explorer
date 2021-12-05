@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "An artist explorer for Skeb in case for future commissions",
   "main": "app.js",
-  "type": "module",
   "scripts": {
     "start": "node app.js",
     "test": "node app.js",
