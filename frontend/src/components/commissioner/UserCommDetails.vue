@@ -5,7 +5,7 @@
       :show-load-more="showLoadMore"
       :unique-users="uniqueArtists"
       :is-artist="false" />
-    <hr />
+    <v-divider></v-divider>
     <ArtList
       @load-more="loadMore()"
       :show-load-more="showLoadMore"

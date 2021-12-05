@@ -1,14 +1,12 @@
 <template>
   <div class="artist-page">
     <ArtistSummary :artist-summary-info="summary" />
-    <hr/>
     <ArtistWorkDetails
       :image-list="receivedWorks"
       :total-works="summary.receivedWorksCount"
       :artist-name="summary.screenName"
       :load-new-page-ctr="loadNewPageCtr"
       @load-more="loadMore()" />
-    <hr/>
   </div>
 </template>
 

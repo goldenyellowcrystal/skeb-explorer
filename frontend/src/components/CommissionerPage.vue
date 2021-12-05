@@ -1,7 +1,6 @@
 <template>
   <div class="commissioner-page">
     <UserSummary :user-info="summary" />
-    <hr />
     <UserCommDetails 
       :image-list="commissionedWorks"
       :total-reqs="summary.commissionedCnt"

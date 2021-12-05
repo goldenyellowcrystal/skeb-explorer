@@ -1,7 +1,8 @@
 <template>
   <div class="art-list">
-    <h2 v-if="isArtist">Created Works</h2>
-    <h2 v-else>Commissioned Art</h2>
+    <div class="text-h4 text-center py-6">
+     {{ isArtist ? 'Created Works' : 'Commissioned Art' }}
+    </div>
     <v-container fluid>
       <v-row>
         <v-col class="d-flex flex-column" v-for="image in imageListWithCommissioners" :key="image.id">

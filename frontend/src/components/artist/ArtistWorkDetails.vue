@@ -5,7 +5,7 @@
       :show-load-more="showLoadMore"
       :unique-users="uniqueCommissioners"
       :is-artist="true" />
-    <hr />
+    <v-divider></v-divider>
     <ArtList
       @load-more="loadMore()"
       :show-load-more="showLoadMore"
@@ -128,3 +128,9 @@
     }
   }
 </script>
+
+<style>
+  .artist-work-details {
+    margin: 0 5%;
+  }
+</style>

@@ -1,7 +1,8 @@
 <template>
-  <div class="users-list">
-    <h2 v-if="isArtist">Commissioners List</h2>
-    <h2 v-else>Commissioned Artists List</h2>
+  <div class="users-list pb-12">
+    <div class="text-h4 text-center pb-6">
+      Commission{{ isArtist ? 'ers' : 'ed Artists' }} List
+    </div>
 
     <v-container fluid>
       <v-row>
