@@ -1,7 +1,8 @@
 const express = require('express')
 const axios = require('axios')
 var cors = require('cors')
-import sslRedirect from 'heroku-ssl-redirect';
+var sslRedirect = require('heroku-ssl-redirect')
+
 const app = express()
 const port = process.env.PORT || 5000
 const path = require('path')
