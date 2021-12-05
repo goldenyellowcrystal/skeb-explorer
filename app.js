@@ -76,7 +76,6 @@ app.get('/api/new/art/:page', cors(corsOptionsDelegate), (req, res) => {
 if (process.env.NODE_ENV == 'production') {
   // Set static folder
   app.use(express.static('frontend/dist'));
-  app.use(sslRedirect());
 
   app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html'))
