@@ -1,6 +1,7 @@
 const express = require('express')
 const axios = require('axios')
 var cors = require('cors')
+import sslRedirect from 'heroku-ssl-redirect';
 const app = express()
 const port = process.env.PORT || 5000
 const path = require('path')
@@ -74,14 +75,7 @@ app.get('/api/new/art/:page', cors(corsOptionsDelegate), (req, res) => {
 if (process.env.NODE_ENV == 'production') {
   // Set static folder
   app.use(express.static('frontend/dist'));
-
-  // redirect to HTTPS
-  app.use((req, res, next) => {
-    if (req.header('x-forwarded-proto') !== 'https')
-      res.redirect(`https://${req.header('host')}${req.url}`)
-    else
-      next()
-  })
+  app.use(sslRedirect());
 
   app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html'))
