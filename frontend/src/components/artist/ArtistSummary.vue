@@ -28,17 +28,7 @@
                 <div class="d-block text-no-wrap text-truncate header-text">
                   @{{ artistSummaryInfo.screenName }}
 
-                  <v-btn
-                    small
-                    color="primary"
-                    elevation="2"
-                    class="ms-2"
-                  >
-                    <v-icon left>
-                      mdi-eye-plus
-                    </v-icon>
-                    Watch
-                  </v-btn>                  
+                  <WatchButton @watch-clicked="addToWatch()"/>
                 </div>
               </v-row>
               <v-row>
@@ -51,8 +41,8 @@
 
                   <v-chip small outlined
                     class="ms-1"
-                    :color="artistSummaryInfo.allowNSFW ? 'green' : 'red'">
-                      NSFW {{ artistSummaryInfo.allowNSFW ? '✔' : '❌' }}
+                    :color="artistSummaryInfo.allowNsfw ? 'green' : 'red'">
+                      NSFW {{ artistSummaryInfo.allowNsfw ? '✔' : '❌' }}
                   </v-chip>
 
                   <v-chip small outlined
@@ -111,10 +101,20 @@
 </template>
 
 <script>
+  import WatchButton from "../common/WatchButton.vue";
+
   export default {
     name: 'ArtistSummary',
+    components: {
+      WatchButton
+    },
     props: {
       artistSummaryInfo: Object
+    },
+    methods: {
+      addToWatch() {
+        console.log(this.artistSummaryInfo)
+      },
     }
   }
 </script>

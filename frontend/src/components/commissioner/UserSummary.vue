@@ -28,17 +28,7 @@
                 <div class="d-block text-no-wrap text-truncate header-text">
                   @{{ userInfo.screenName }}
 
-                  <v-btn
-                    small
-                    color="primary"
-                    elevation="2"
-                    class="ms-2"
-                  >
-                    <v-icon left>
-                      mdi-eye-plus
-                    </v-icon>
-                    Watch
-                  </v-btn>                  
+                  <WatchButton />             
                 </div>
               </v-row>
               <v-row>
@@ -59,8 +49,13 @@
 </template>
 
 <script>
+  import WatchButton from "../common/WatchButton.vue";
+
   export default {
     name: 'UserSummary',
+    components: {
+      WatchButton
+    },
     props: {
       userInfo: Object
     }
