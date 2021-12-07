@@ -107,6 +107,7 @@
 <script>
   import WatchButton from "../common/WatchButton.vue";
   import { db } from '../../db';
+  import { convertBooleanToNum } from '../../helper';
 
   export default {
     name: 'ArtistSummary',
@@ -130,12 +131,12 @@
             name: this.artistSummaryInfo.artistName,
             screen_name: this.artistSummaryInfo.screenName,
             lang: this.artistSummaryInfo.lang,
-            is_artist: true,
-            comms_open: this.artistSummaryInfo.commsOpen,
+            is_artist: convertBooleanToNum(true),
+            comms_open: convertBooleanToNum(this.artistSummaryInfo.commsOpen),
             suggested_price: this.artistSummaryInfo.suggestedPrice,
             complete_rate: this.artistSummaryInfo.completeRate,
-            allow_hidden: this.artistSummaryInfo.allowPrivate,
-            allow_nsfw: this.artistSummaryInfo.allowNsfw,
+            allow_hidden: convertBooleanToNum(this.artistSummaryInfo.allowPrivate),
+            allow_nsfw: convertBooleanToNum(this.artistSummaryInfo.allowNsfw),
             total_works: this.artistSummaryInfo.receivedWorksCount
           });
 

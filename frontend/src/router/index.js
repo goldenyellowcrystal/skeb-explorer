@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import About from '../views/About.vue'
 import UserPage from '../views/UserPage.vue'
+import FollowedUsersPage from '../views/FollowedUsersPage.vue'
 
 Vue.use(VueRouter)
 
@@ -22,6 +23,11 @@ const routes = [
     path: '/user/:username',
     name: 'UserPage',
     component: UserPage
+  },
+  {
+    path: '/followed-users',
+    name: 'FollowedUsersPage',
+    component: FollowedUsersPage
   }
 ]
 

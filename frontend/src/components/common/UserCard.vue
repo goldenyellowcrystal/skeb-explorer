@@ -22,7 +22,9 @@
         </div>
       </v-row>
       <v-row class="justify-center text-center">
-        <div class="text-caption">
+        <div class="pb-4" v-if="hideSubtext">
+        </div>
+        <div class="text-caption" v-else>
           {{ user.art_count }} commission{{ user.is_creator ? 's' : 'ed' }}
         </div>
       </v-row>
@@ -34,7 +36,8 @@
   export default {
     name: 'UserCard',
     props: {
-      user: Object
+      user: Object,
+      hideSubtext: Boolean
     },
     methods: {
       linkToPage: function(screenName) {

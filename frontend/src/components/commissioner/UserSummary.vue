@@ -55,6 +55,7 @@
 <script>
   import WatchButton from "../common/WatchButton.vue";
   import { db } from '../../db';
+  import { convertBooleanToNum } from '../../helper';
 
   export default {
     name: 'UserSummary',
@@ -78,7 +79,7 @@
             name: this.userInfo.userName,
             screen_name: this.userInfo.screenName,
             lang: this.userInfo.lang,
-            is_artist: false,
+            is_artist: convertBooleanToNum(false),
             total_works: this.userInfo.commissionedCnt
           });
 
