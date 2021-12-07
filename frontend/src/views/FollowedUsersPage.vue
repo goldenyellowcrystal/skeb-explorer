@@ -102,7 +102,6 @@
       fixedCommissioners() {
         var fixed = [];
         if (!!this.commissioners) {
-          console.log(this.commissioners)
           this.commissioners.forEach(commissioner => {
             fixed.push({
               is_creator: (commissioner.is_artist < 1),
