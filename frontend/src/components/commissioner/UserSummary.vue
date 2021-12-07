@@ -102,7 +102,7 @@
           const deleted = await db.users.where('screen_name').equalsIgnoreCase(this.userInfo.screenName).delete();
           this.isWatched = false;
         } catch (error) {
-          console.log(`Error during deletion of ${this.userInfo.screen_name}: ${error}`)
+          console.log(`Error during deletion of ${this.userInfo.screen_name}: ${error}.`)
         }
       }
     },
