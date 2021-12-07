@@ -74,7 +74,7 @@ app.get('/api/new/art/:page', cors(corsOptionsDelegate), (req, res) => {
 
 // Serve static assets if in production
 if (process.env.NODE_ENV == 'production') {
-  app.use(enforce.HTTPS({ trustProtoHeader: true }));
+  // app.use(enforce.HTTPS({ trustProtoHeader: true }));
 
   // Set static folder
   app.use(express.static('frontend/dist'));
