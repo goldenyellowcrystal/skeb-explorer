@@ -28,7 +28,11 @@
                 <div class="d-block text-no-wrap text-truncate header-text">
                   @{{ artistSummaryInfo.screenName }}
 
-                  <WatchButton @watch-clicked="addToWatch()"/>
+                  <WatchButton
+                    :is-watched="isWatched"
+                    @watch-clicked="addToWatch()"
+                    @unwatch-clicked="removeFromWatch()"
+                  />
                 </div>
               </v-row>
               <v-row>
@@ -102,19 +106,74 @@
 
 <script>
   import WatchButton from "../common/WatchButton.vue";
+  import { db } from '../../db';
 
   export default {
     name: 'ArtistSummary',
     components: {
       WatchButton
     },
+    data() {
+      return {
+        isWatched: false
+      }
+    },
     props: {
       artistSummaryInfo: Object
     },
     methods: {
-      addToWatch() {
-        console.log(this.artistSummaryInfo)
+      async addToWatch() {
+        try {
+          const id = await db.users.add({
+            icon: this.artistSummaryInfo.artistIcon,
+            header: this.artistSummaryInfo.artistHeader,
+            name: this.artistSummaryInfo.artistName,
+            screen_name: this.artistSummaryInfo.screenName,
+            lang: this.artistSummaryInfo.lang,
+            is_artist: true,
+            comms_open: this.artistSummaryInfo.commsOpen,
+            suggested_price: this.artistSummaryInfo.suggestedPrice,
+            complete_rate: this.artistSummaryInfo.completeRate,
+            allow_hidden: this.artistSummaryInfo.allowPrivate,
+            allow_nsfw: this.artistSummaryInfo.allowNsfw,
+            total_works: this.artistSummaryInfo.receivedWorksCount
+          });
+
+          this.isWatched = true;
+        } catch (error) {
+          console.log(`Failed to add ${this.artistSummaryInfo.screenName}: ${error}`)
+        }
       },
+      async queryWatched() {
+        try {
+          const followedUser = await db.users.where('screen_name').equalsIgnoreCase(this.artistSummaryInfo.screenName).toArray();
+          this.isWatched = followedUser.length > 0
+        } catch (error) {
+          if (error != 'TypeError: String expected.')
+            console.log(`Error during query: ${error}`)
+        }
+      },
+      async removeFromWatch() {
+        try {
+          const deleted = await db.users.where('screen_name').equalsIgnoreCase(this.artistSummaryInfo.screenName).delete();
+          this.isWatched = false;
+        } catch (error) {
+          console.log(`Error during deletion of ${this.artistSummaryInfo.screen_name}: ${error}`)
+        }
+      }
+    },
+    watch: {
+      artistSummaryInfo: {
+        deep: true,
+        immediate: true,
+        handler: function(newVal, oldVal) {
+          if (oldVal && !newVal) {
+            this.queryWatched();
+          } else if (newVal) {
+            this.queryWatched();
+          }
+        }
+      }
     }
   }
 </script>
