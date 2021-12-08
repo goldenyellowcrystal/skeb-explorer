@@ -7,7 +7,7 @@
       elevation="1"
       outlined>
 
-      <v-img :src="artDetails.thumbnail_image_urls.src"
+      <v-img :src="imgSrc"
         class="pointer"
         @click="gotoWorkPage()" />
 
@@ -32,6 +32,15 @@
     methods: {
       gotoWorkPage: function() {
         window.open('https://skeb.jp' + this.artDetails.path, '_blank');
+      }
+    },
+    computed: {
+      imgSrc() {
+        if (!!this.artDetails.nsfw && window.localStorage.getItem('show-nsfw') == 'false') {
+          return this.artDetails.consored_thumbnail_image_urls.src
+        } else {
+          return this.artDetails.thumbnail_image_urls.src
+        }
       }
     }
   }

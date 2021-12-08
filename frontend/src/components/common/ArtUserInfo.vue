@@ -27,11 +27,20 @@
     },
     methods: {
       linkToPage: function(screenName) {
-        this.$router.push({
-          name: 'UserPage',
-          params: {
-            username: screenName
-        }});
+        if (window.localStorage.getItem('show-in-new-tab') == 'false') {
+          this.$router.push({
+            name: 'UserPage',
+            params: {
+              username: screenName
+          }});
+        } else {
+          let routeData = this.$router.resolve({
+            name: 'UserPage',
+            params: {
+              username: screenName
+          }});
+          window.open(routeData.href, '_blank');
+        }
       }
     }
   }
