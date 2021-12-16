@@ -2,27 +2,28 @@
   <v-app>
     <v-app-bar
       app
-      color="primary"
+      color="teal darken-3"
       dark
     >
-      <div class="d-flex align-center">
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+
+      <div class="d-flex align-center pointer" @click="goto('Home')">
         <v-img
           alt="Vuetify Logo"
           class="shrink mr-2"
           contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+          src="https://skeb.imgix.net/static/icon.svg?s=beb60eadb916f3d0f103f44578a6bf33"
           transition="scale-transition"
           width="40"
         />
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
+        <h2 class="shrink mt-1 hidden-sm-and-down grey--text text--lighten-2"
           contain
           min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
           width="100"
-        />
+        >
+          Skeb Explorer
+        </h2>
       </div>
 
       <v-spacer></v-spacer>
@@ -37,6 +38,40 @@
       </v-btn>
     </v-app-bar>
 
+    <v-navigation-drawer
+      v-model="drawer"
+      absolute
+      temporary
+    >
+      <v-list nav dense>
+        <v-list-item-group
+          v-model="group"
+          active-class="teal--text text--darken-3"
+        >
+          <v-list-item>
+            <v-list-item-title>
+              Popular Art
+            </v-list-item-title>
+          </v-list-item>
+          <v-list-item @click="goto('FollowedUsersPage')">
+            <v-list-item-title>
+              Followed Artists
+            </v-list-item-title>
+          </v-list-item>
+          <v-list-item @click="goto('SettingsPage')">
+            <v-list-item-title>
+              Settings
+            </v-list-item-title>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-title>
+              Roadmap
+            </v-list-item-title>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
+
     <v-main>
       <router-view/>
     </v-main>
@@ -47,9 +82,29 @@
 
 export default {
   name: 'App',
-
-  data: () => ({
-    //
-  }),
+  data() {
+    return {
+      drawer: false,
+      group: null
+    }
+  },
+  methods: {
+    goto(page) {
+      this.$router.push({
+        name: page
+      });
+    }
+  },
+  watch: {
+    group() {
+      this.drawer = false
+    }
+  }
 };
 </script>
+
+<style>  
+  .pointer {
+    cursor: pointer;
+  }
+</style>

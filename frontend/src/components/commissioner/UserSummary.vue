@@ -2,6 +2,7 @@
   <div class="user-summary">
     <v-img
       max-height="175px"
+      min-width="450px"
       :src="userInfo.userHeader">
       <v-overlay
         :absolute="true"

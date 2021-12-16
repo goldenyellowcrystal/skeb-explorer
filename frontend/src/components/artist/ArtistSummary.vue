@@ -2,6 +2,7 @@
   <div class="artist-summary">
     <v-img
       max-height="175px"
+      min-width="450px"
       :src="artistSummaryInfo.artistHeader">
       <v-overlay
         :absolute="true"
