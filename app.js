@@ -1,7 +1,6 @@
 const express = require('express')
 const axios = require('axios')
-var cors = require('cors')
-var enforce = require('express-sslify');
+var cors = require('cors');
 
 const app = express()
 const port = process.env.PORT || 5000
