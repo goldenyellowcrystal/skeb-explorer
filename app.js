@@ -1,6 +1,7 @@
 const express = require('express')
 const axios = require('axios')
 var cors = require('cors');
+const morgan = require('morgan');
 
 const app = express()
 const port = process.env.PORT || 5000
@@ -31,6 +32,8 @@ if (process.env.NODE_ENV == 'production') {
     res.send('Skeb Explorer')
   })
 }
+
+app.use(morgan('dev'));
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
