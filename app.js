@@ -8,10 +8,6 @@ const path = require('path')
 
 const corsOptionsDelegate = require('./utils/allowed-cors');
 
-const SKEB_URLS = require('./utils/skeb-urls');
-const userProfile = SKEB_URLS.USER_PROFILE;
-const newWorks = SKEB_URLS.NEW_WORKS;
-
 var usersRouter = require('./routes/users');
 var newArtRouter = require('./routes/new');
 
