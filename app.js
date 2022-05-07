@@ -71,6 +71,10 @@ app.get('/api/new/art/:page', cors(corsOptionsDelegate), (req, res) => {
   })
 })
 
+app.get('/version', cors(corsOptionsDelegate), (req, res) => {
+  res.send('07052022 104900')
+})
+
 // Serve static assets if in production
 if (process.env.NODE_ENV == 'production') {
   // Set static folder
