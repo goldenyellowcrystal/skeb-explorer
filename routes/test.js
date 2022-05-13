@@ -8,6 +8,7 @@ const corsOptionsDelegate = require('../utils/allowed-cors');
 const axiosGet = require('../utils/axios-utils');
 
 const firebase = require('../utils/firebase/firebase-utils');
+const db = require('../utils/firebase/firestore');
 
 router.get('/potato', cors(corsOptionsDelegate), async(req, res, next) => {
   try {
@@ -19,26 +20,22 @@ router.get('/potato', cors(corsOptionsDelegate), async(req, res, next) => {
 
 router.get('/set/:id', cors(corsOptionsDelegate), async(req, res, next) => {
   try {
-    const id = req.params.id;
-    const docRef = firebase.db.collection('test').doc(id);
-
-    await docRef.set({id: id});
-    res.send(`Done setting document ${id}!`);
+    await db.set('test', req.params.id, {id: req.params.id});
+    res.send(`Done setting document ${req.params.id}!`);
   } catch (err) {
-    res.status(err.code).send(err.message);
+    if (err.code) {
+      res.status(err.code).send(err.message);
+    } else {
+      console.log('An error has occurred', err);
+      res.status(500).send('SADGE');
+    }
   }
 });
 
 router.get('/get/:id', cors(corsOptionsDelegate), async(req, res, next) => {
   try {
-    const id = req.params.id;
-    const doc = await firebase.db.collection('test').doc(id).get();
-
-    if (!doc.exists) {
-      res.send(`Document ${id} does not exist!`);
-    } else {
-      res.send(`Document data: ${JSON.stringify(doc.data())}`);
-    }
+    let doc = await db.get('test', req.params.id);
+    res.send(`Document ${req.params.id} data: ${JSON.stringify(doc)}`);
   } catch (err) {
     res.status(err.code).send(err.message);
   }

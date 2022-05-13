@@ -20,4 +20,4 @@
 # Firebase Firestore Database
 - https://firebase.google.com/docs/firestore/quickstart
 - https://firebase.google.com/docs/firestore/query-data/get-data
-
+- https://firebase.google.com/docs/firestore/manage-data/add-data
