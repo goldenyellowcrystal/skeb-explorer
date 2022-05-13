@@ -12,3 +12,12 @@
 - https://stackoverflow.com/a/16438739
 - https://stackoverflow.com/a/52512585
 - https://stackoverflow.com/a/69166148
+
+# Firebase Credentials Storage
+- https://learnings.desipenguin.com/post/goog-cred-heroku/
+- https://console.firebase.google.com/u/0/project/<PROJECT_NAME>/settings/serviceaccounts/adminsdk
+
+# Firebase Firestore Database
+- https://firebase.google.com/docs/firestore/quickstart
+- https://firebase.google.com/docs/firestore/query-data/get-data
+

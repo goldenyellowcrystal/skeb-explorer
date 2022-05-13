@@ -11,12 +11,14 @@ const corsOptionsDelegate = require('./utils/allowed-cors');
 
 var usersRouter = require('./routes/users');
 var newArtRouter = require('./routes/new');
+var testRouter = require('./routes/test');
 
 app.use('/api/users', usersRouter);
 app.use('/api/new', newArtRouter);
+app.use('/test', testRouter);
 
 app.get('/version', cors(corsOptionsDelegate), (req, res) => {
-  res.send('07052022 104900')
+  res.send('13052022 193900')
 })
 
 // Serve static assets if in production
