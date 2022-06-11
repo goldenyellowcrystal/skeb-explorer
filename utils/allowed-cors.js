@@ -1,4 +1,4 @@
-var allowedOrigins = ['https://skeb-explorer.herokuapp.com', 'http://skeb-explorer.herokuapp.com']
+var allowedOrigins = ['https://skeb-explorer.herokuapp.com', 'http://skeb-explorer.herokuapp.com', 'http://localhost:8080']
 var corsOptionsDelegate = {
   origin: function(origin, callback){
     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
